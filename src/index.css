@@ -14,24 +14,45 @@ code {
     monospace;
 }
 
-.live-react {
+.editor {
   display: flex;
-  height: calc(100vh - 150px);
+  height: 100vh;
   width: 100%;
 }
 
-pre {
-  margin: 0;
-  height: 150px;
-  width: 100%;
-  background-color: #ff4d4d;
+pre {margin: 0 !important;}
+
+.live-error {
+  height: 170px;
+  width: 50%;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-color: #2f3129;
   color: #fff;
+  border-top: 2px solid rgb(26, 27, 24);
+  border-left: 2px solid #fff;
   padding: 10px 20px;
   overflow: auto;
 }
 
-.live-react>* {
+.editor>* {
   width: 50%;
   height: 100%;
 }
 
+.d-flex {display: flex;}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  border-radius: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(145, 145, 145);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}

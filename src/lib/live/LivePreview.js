@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 let babelOptions = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
 
-export default function Preview () {
+export default function LivePreview () {
 
   const { state, setState } = useContext(LiveContext)
   const previewRef = useRef();
@@ -29,5 +29,5 @@ export default function Preview () {
     }
   }, [state.editorVal]);
 
-  return (<div id="preview" ref={previewRef}></div>);
+  return <div id={state.renderElementId} ref={previewRef}></div>
 }
