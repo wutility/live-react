@@ -3,7 +3,7 @@ import LiveContext from '../store/LiveContext';
 
 export default function LiveEditor ({ onChange }) {
 
-  const { state, setState } = useContext(LiveContext)
+  const { liveState, setLiveState } = useContext(LiveContext)
   const editorRef = useRef(null);
 
   const eops = {
@@ -15,9 +15,9 @@ export default function LiveEditor ({ onChange }) {
     showPrintMargin: true,
     showGutter: true,
     highlightGutterLine: true,
-    fontSize: state.fontSize,
-    theme: state.theme,
-    mode: state.mode,
+    fontSize: liveState.config.fontSize,
+    theme: liveState.config.theme,
+    mode: liveState.config.mode,
     useWorker: false,
     tabSize: 4
   }
@@ -26,14 +26,15 @@ export default function LiveEditor ({ onChange }) {
     if (editorRef.current && window.ace) {
 
       const editor = window.ace.edit(editorRef.current);
+      const { config } = liveState
 
-      editor.setValue(state.editorVal, 1);
-      editor.setOptions(eops);
+      editor.setValue(liveState.editorVal, 1);
+      editor.setOptions({ ...eops, ...config });
 
       editor.getSession().on('change', function () {
         let editorVal = editor.session.getValue();
 
-        setState({ ...state, editorVal })
+        setLiveState({ ...liveState, editorVal })
 
         if (onChange) {
           onChange(editorVal)

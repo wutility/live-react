@@ -6,19 +6,19 @@ import styled from 'styled-components';
 
 let babelOptions = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
 
-export default function LivePreview () {
+export default function LivePreview ({ transformed }) {
 
-  const { state, setState } = useContext(LiveContext)
+  const { liveState, setLiveState } = useContext(LiveContext)
   const previewRef = useRef();
 
   useEffect(() => {
     if (previewRef && previewRef.current) {
       try {
-        let result = window.Babel.transform(state.editorVal, babelOptions);
+        let result = window.Babel.transform(liveState.editorVal, babelOptions);
 
         const render = (Element) => {
           let ErroB = ErrorBoundary(Element, (e) => {
-            setState({ ...state, error: e || e.message });
+            setLiveState({ ...liveState, error: e || e.message });
           });
 
           return ReactDOM.render(
@@ -29,12 +29,17 @@ export default function LivePreview () {
 
         let Func = new Function('React', 'render', 'styled', result.code);
         Func(React, render, styled);
-        setState({ ...state, error: '' });
+        setLiveState({ ...liveState, error: '' });
+
+        if (transformed) {
+          transformed(result.code)
+        }
+
       } catch (err) {
-        setState({ ...state, error: err.message });
+        setLiveState({ ...liveState, error: err.message });
       }
     }
-  }, [state.editorVal]);
+  }, [liveState.editorVal]);
 
   return <div ref={previewRef}></div>
 }

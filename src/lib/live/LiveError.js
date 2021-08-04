@@ -3,7 +3,7 @@ import LiveContext from '../store/LiveContext';
 
 export default function LiveError () {
   
-  const { state } = useContext(LiveContext)
+  const { liveState } = useContext(LiveContext)
 
-  return <pre className="live-error"><code>{state.error}</code></pre>
+  return <pre className="live-error"><code>{liveState.error}</code></pre>
 }
