@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import LiveContext from '../LiveContext';
+import LiveContext from '../store/LiveContext';
 import ErrorBoundary from './ErrorBoundary';
 import styled from 'styled-components';
 
@@ -16,12 +16,19 @@ export default function LivePreview () {
       try {
         let result = window.Babel.transform(state.editorVal, babelOptions);
 
-        let ErroB = ErrorBoundary((e) => {
-          setState({ ...state, error: e || e.message });
-        });
+        const render = (Element) => {
+          let ErroB = ErrorBoundary(Element, (e) => {
+            setState({ ...state, error: e || e.message });
+          });
 
-        let Func = new Function('React', 'ReactDOM', 'ErrorBoundary', 'styled', result.code);
-        Func(React, ReactDOM, ErroB, styled);
+          return ReactDOM.render(
+            <ErroB />,
+            previewRef.current
+          );
+        }
+
+        let Func = new Function('React', 'render', 'styled', result.code);
+        Func(React, render, styled);
         setState({ ...state, error: '' });
       } catch (err) {
         setState({ ...state, error: err.message });
@@ -29,5 +36,5 @@ export default function LivePreview () {
     }
   }, [state.editorVal]);
 
-  return <div id={state.renderElementId} ref={previewRef}></div>
+  return <div ref={previewRef}></div>
 }

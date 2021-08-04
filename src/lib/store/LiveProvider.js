@@ -4,14 +4,8 @@ import LiveContext from './LiveContext';
 let editorVal = `const { useState, useEffect, useRef } = React;
 
 const Title = styled.h1\`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
+  color: red;
 \`;
-
-function Button({ onClick }) {
-  return <button onClick={onClick}>click</button>;
-}
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,17 +13,12 @@ function App() {
   return (
     <div>
       <Title>Hello World!</Title>
-      {count} <Button onClick={onCount} />
+      {count} <button onClick={onCount}>Click me</button>
     </div>
   );
 }
 
-ReactDOM.render(
-  <ErrorBoundary>
-    <App />
-  </ErrorBoundary>,
-  document.getElementById('preview')
-);`;
+render(<App />)`;
 
 export default function LiveProvider ({ children, dstate }) {
 
@@ -37,11 +26,9 @@ export default function LiveProvider ({ children, dstate }) {
     editorVal,
     outputVal: '',
     error: null,
-    renderElementId: 'preview',
     fontSize: 16,
     mode: 'ace/mode/jsx',
     theme: 'ace/theme/monokai',
-    onChange: null,
     ...dstate
   };
 

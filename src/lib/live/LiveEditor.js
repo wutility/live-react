@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useContext } from 'react';
-import LiveContext from '../LiveContext';
+import LiveContext from '../store/LiveContext';
 
-export default function LiveEditor () {
+export default function LiveEditor ({ onChange }) {
 
   const { state, setState } = useContext(LiveContext)
   const editorRef = useRef(null);
@@ -32,7 +32,12 @@ export default function LiveEditor () {
 
       editor.getSession().on('change', function () {
         let editorVal = editor.session.getValue();
+
         setState({ ...state, editorVal })
+
+        if (onChange) {
+          onChange(editorVal)
+        }
       });
     }
   }, []);

@@ -1,27 +1,21 @@
-import { useContext } from 'react';
 import {
-  LiveContext,
   LiveProvider,
   LiveEditor,
   LivePreview,
   LiveError
 } from './lib/index.js'
 
-function App () {
+export default function App () {
 
-  const { state, setState } = useContext(LiveContext)
+  const onChange = value => {
+    console.log(value);
+  }
 
-  return (
-    <div className="App">
-      <LiveProvider>
-        <div className="d-flex editor">
-          <LiveEditor />
-          <LivePreview />
-        </div>
-        <LiveError />
-      </LiveProvider>
+  return (<LiveProvider>
+    <div className="d-flex editor">
+      <LiveEditor onChange={onChange} />
+      <LivePreview />
     </div>
-  );
+    <LiveError />
+  </LiveProvider>);
 }
-
-export default App;

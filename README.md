@@ -9,10 +9,10 @@ import {
   LivePreview
 } from 'live-react'
 
-<LiveProvider code="<strong>Hello World!</strong>">
-  <Editor />
-  <LiveError />
+<LiveProvider>
+  <LiveEditor />  
   <LivePreview />
+  <LiveError />
 </LiveProvider>
 ```
 

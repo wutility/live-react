@@ -1,5 +1,5 @@
-import LiveContext from './LiveContext';
-import LiveProvider from './LiveProvider';
+import LiveContext from './store/LiveContext';
+import LiveProvider from './store/LiveProvider';
 
 import LiveEditor from './live/LiveEditor';
 import LivePreview from './live/LivePreview';

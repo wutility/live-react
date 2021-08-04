@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ErrorBoundary (callback) {
+function ErrorBoundary (Element, callback) {
   return class ErrorB extends React.Component {
 
     state = { hasError: false, error: null };
@@ -16,8 +16,7 @@ function ErrorBoundary (callback) {
 
     render () {
       try {
-        const { error } = this.state;
-        return <>{error ? error.message : this.props.children}</>;
+        return typeof Element === 'function' ? <Element /> : Element;
       } catch (err) {
         return <>{'' + err.message}</>;
       }
