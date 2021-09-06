@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import LiveContext from './LiveContext';
 
-export default function LiveProvider ({ children, code, config }) {
-
+export default function LiveProvider ({ children, code, onError }) {
   const initState = {
     editorVal: code,
     outputVal: '',
-    error: null,
-    config: {
-      fontSize: 16,
-      mode: 'ace/mode/jsx',
-      theme: 'ace/theme/monokai',
-      ...config
-    }
+    error: null
   };
 
   const [liveState, setLiveState] = useState(initState);

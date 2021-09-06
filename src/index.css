@@ -1,6 +1,8 @@
 * {box-sizing: border-box;}
 
 body {
+  background-color: #1b1b1b;
+  color: #fff;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -9,39 +11,78 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+h1,h3 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.editor {
+.editor {  
   display: flex;
-  height: 100vh;
-  width: 100%;
+  width: 70%;
+  position: relative;
+  border: 1px solid #000;
+  font-size: 12px !important;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.live-editor {
+  position: relative;
+}
+
+.live-editor button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: rgb(22, 22, 22);
+  color: #fff;
+  border: inherit;
+  padding: 5px 10px;
+  font-size: 11px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: opacity .25s;
+  text-transform: uppercase;
+}
+
+.live-editor button:hover {opacity: 0.8;}
+
+.live-error {
+  width: 50%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px 20px;
+  background-color: #ff4444;
+  overflow: auto;
+}
+
+.editor>* {  
+  width: 50%;
 }
 
 pre {margin: 0 !important;}
 
-.live-error {
-  height: 170px;
-  width: 50%;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  background-color: #2f3129;
-  color: #fff;
-  border-top: 2px solid rgb(26, 27, 24);
-  border-left: 2px solid #fff;
-  padding: 10px 20px;
-  overflow: auto;
-}
-
-.editor>* {
-  width: 50%;
-  height: 100%;
+.live-preview {
+  padding: 10px;
 }
 
 .d-flex {display: flex;}
+
+.txt-center {text-align: center;}
 
 ::-webkit-scrollbar {
   width: 5px;

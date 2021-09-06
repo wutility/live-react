@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 let babelOptions = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
 
-export default function LivePreview ({ transformed }) {
+export default function LivePreview ({ onTranspile, onError }) {
 
   const { liveState, setLiveState } = useContext(LiveContext)
   const previewRef = useRef();
@@ -31,15 +31,18 @@ export default function LivePreview ({ transformed }) {
         Func(React, render, styled);
         setLiveState({ ...liveState, error: '' });
 
-        if (transformed) {
-          transformed(result.code)
+        if (onTranspile) {
+          onTranspile(result.code)
         }
 
       } catch (err) {
         setLiveState({ ...liveState, error: err.message });
+        if (onError) {
+          onError(err.message)
+        }
       }
     }
   }, [liveState.editorVal]);
 
-  return <div ref={previewRef}></div>
+  return <div className="live-preview" ref={previewRef}></div>
 }

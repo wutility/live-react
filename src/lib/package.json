@@ -1,11 +1,13 @@
 {
   "name": "live-react",
   "version": "1.0.0",
-  "description": "React live playground",
+  "description": "React live component",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {
-    "styled-components": "^5.3.0"
+  "peerDependencies": {
+    "prismjs": "^1.24.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "files": [
     "index.js",
@@ -25,9 +27,7 @@
   "keywords": [
     "react",
     "live",
-    "live edit",
-    "react playground",
-    "react live",
+    "prism",
     "component"
   ]
 }

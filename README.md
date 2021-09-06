@@ -1,4 +1,4 @@
-# React live playground
+# React live component
 
 # Usage
 ```jsx
@@ -9,7 +9,7 @@ import {
   LivePreview
 } from 'live-react'
 
-<LiveProvider>
+<LiveProvider code={<div>Hello</div>}>
   <LiveEditor />  
   <LivePreview />
   <LiveError />

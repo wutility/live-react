@@ -8,16 +8,11 @@ import {
 
 let codeTest = `const { useState, useEffect, useRef } = React;
 
-const Title = styled.h1\`
-  color: black;
-\`;
-
 function App() {
   const [count, setCount] = useState(0);
   const onCount = () => setCount(count + 1);
   return (
     <div>
-      <Title>Hello World!</Title>
       {count} <button onClick={onCount}>Click me</button>
     </div>
   );
@@ -25,21 +20,47 @@ function App() {
 
 render(<App />)`;
 
+let codeTestWithError = `const { useState, useEffect, useRef } = React;
+
+function App() {
+  const [count, setCount] = useState(0);
+  const onCount = () => setCount(count + 1);
+  return (
+    <div>
+      {count} <button onClick={onCount}>Click me</button>
+    </div>
+  );
+}
+
+render(<App /)`;
+
 export default function App () {
 
-  const [state, setState] = useState(codeTest);
+  const [showLiveError, setShowLiveError] = useState(false);
+  const [showLiveErrorWithError, setShowLiveErrorWithError] = useState(false);
 
-  const onChange = value => {
-    setState(value);
-  }
+  const onTranspile = value => { }
 
-  const transformed = value => {}
+  return (<main>
 
-  return (<LiveProvider code={state} config={{ fontSize: 16 }}>
-    <div className="d-flex editor">
-      <LiveEditor onChange={onChange} />
-      <LivePreview transformed={transformed} />
-    </div>
-    <LiveError />
-  </LiveProvider>);
+    <h1>Live React Component</h1>
+
+    <h3>Example</h3>
+    <LiveProvider code={codeTest}>
+      <div className="d-flex editor">
+        <LiveEditor />
+        <LivePreview onTranspile={onTranspile} onError={setShowLiveError} />
+        {showLiveError && <LiveError />}
+      </div>
+    </LiveProvider>
+
+    <h3>Example with error</h3>
+    <LiveProvider code={codeTestWithError}>
+      <div className="d-flex editor">
+        <LiveEditor />
+        <LivePreview onTranspile={onTranspile} onError={setShowLiveErrorWithError} />
+        {showLiveErrorWithError && <LiveError />}
+      </div>
+    </LiveProvider>
+  </main>);
 }
