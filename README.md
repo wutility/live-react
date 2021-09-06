@@ -4,14 +4,14 @@
 
 # Installation
 ```bash
-$ npm install live-react
+$ npm install live-reacto
 # or via yarn 
-$ yarn add live-react
+$ yarn add live-reacto
 ```
 
 # Usage
 ```jsx
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'live-react'
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'live-reacto'
 
 <LiveProvider code={'your code'}>
   <LiveEditor />
