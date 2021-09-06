@@ -12,16 +12,16 @@ body {
 }
 
 main {
-  width: 100%;
+  padding: 20px 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
 }
 
 main>h3 {
-  text-align: center;
+  color: #ff9800;
   text-transform: uppercase;
+  letter-spacing: 1.2px;
 }
 
 main>h1 { color: #ff3939; font-family: 'Lobster', cursive; text-align: center;}
@@ -33,19 +33,23 @@ code {
 
 .editor {  
   display: flex;
-  width: 70%;
+  width: 100%;
   position: relative;
   border: 1px solid #000;
-  font-size: 12px !important;
-  margin: auto;
+  font-size: 14px !important;
   margin-bottom: 20px;
   border-radius: 7px;
   overflow: hidden;
+  font-family: Consolas;
 }
 
 .live-editor {
   position: relative;
+  background: #2f2f2f;
+  padding: 10px;
 }
+
+textarea {outline: none !important;}
 
 .live-editor button {
   position: absolute;
@@ -94,6 +98,8 @@ footer {
 
 .txt-center {text-align: center;}
 
+.mt-0 {margin-top: 0;}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -106,4 +112,10 @@ footer {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    padding: 20px;
+  }
 }

@@ -12,9 +12,9 @@ export default {
   input: "index.js",
   output: [
     {
+      name: "liveReacto",
       file: packageJson.main,
-      format: "cjs",
-      sourcemap: true
+      format: "umd"
     },
     {
       file: packageJson.module,

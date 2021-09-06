@@ -9,6 +9,7 @@ export default function LiveProvider ({ children, code, externals }) {
   }];
 
   const initState = {
+    language:'jsx',
     editorVal: code,
     outputVal: '',
     error: null,

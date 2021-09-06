@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 import LiveContext from '../store/LiveContext';
 import ErrorBoundary from './ErrorBoundary';
 
-let babelOptions = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
+let babelOptions = {
+  envName: 'production',
+  presets: ['react', 'es2017'],
+  babelrc: false,
+  comments: false
+};
 
 export default function LivePreview ({ onTranspile, onError }) {
 
@@ -36,20 +41,24 @@ export default function LivePreview ({ onTranspile, onError }) {
           externalComponents = [...externalComponents, ...Object.keys(externals).map(v => externals[v].lib)]
         }
 
-        let Func = new Function(...externalsNames, result.code);
-        Func(...externalComponents);
-
-        setLiveState({ ...liveState, error: '' });
-
-        if (onTranspile) {
-          onTranspile(result.code)
+        if (!/render\s*\(/.test(editorVal)) {
+          let Func = new Function('React', 'return ' + result.code.trim());
+          render(Func(React))
+        }
+        else {
+          let Func = new Function(...externalsNames, result.code.trim());
+          Func(...externalComponents);
         }
 
+        setLiveState({ ...liveState, error: null });
+
+        if (onTranspile) { onTranspile(result.code) }
+        if (onError) { onError(null) }
       } catch (err) {
-        setLiveState({ ...liveState, error: err.message });
         if (onError) {
           onError(err.message)
         }
+        setLiveState({ ...liveState, error: err.message });
       }
     }
   }, [liveState.editorVal]);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ErrorBoundary (Element, callback) {
+export default function ErrorBoundary (Element, callback) {
   return class ErrorB extends React.Component {
 
     state = { hasError: false, error: null };
@@ -23,4 +23,3 @@ function ErrorBoundary (Element, callback) {
     }
   }
 }
-export default ErrorBoundary;

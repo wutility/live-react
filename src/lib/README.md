@@ -1,4 +1,5 @@
-# ⚡️ React live component
+# ⚡️ Live Reacto  
+A Simple and flexible playground for live editing React code
 
 ![React live component](https://badgen.net/bundlephobia/dependency-count/live-reacto) ![React live component](https://badgen.net/npm/v/live-reacto) ![React live component](https://badgen.net/npm/dt/live-reacto) 
 
@@ -16,13 +17,13 @@ $ yarn add live-reacto
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'live-reacto'
 
 <LiveProvider code={'your code'}>
-  <LiveEditor />
+  <LiveEditor onChange={(newCode) => {}} />
   <LivePreview />
   <LiveError />
 </LiveProvider>
 ```
 
-## Example
+## Full Example
 ```jsx
 // to change Prism theme, just import css file
 import "prismjs/themes/prism-tomorrow.css";
@@ -39,12 +40,13 @@ render(<App />)`;
 const Hello = () => <h1>Hello world</h1>
 
 <LiveProvider
+  language="jsx" 
   code={code}
   externals={[ // add an external component or library (styledComponent, etc..)
     { name: 'Hello', lib: Hello }
   ]}>
 
-    <LiveEditor language="jsx" />
+    <LiveEditor onChange={(newCode) => {}} />
 
     <LivePreview
       onTranspile={transpiledCode => { }}   // returns transpiled code by Babel
@@ -60,16 +62,17 @@ const Hello = () => <h1>Hello world</h1>
 
 - **LiveProvider**
 
-| Prop         | Type                     | Description                           |
-|--------------|--------------------------|---------------------------------------|
-|code          | `string`                 | Reactjs code                          |
-|externals     | `Array<String, Object>`  | Add an external component or library. |
+| Prop         | Type                     | Description                                  |
+|--------------|--------------------------|----------------------------------------------|
+|language      | `string`                 | Language to be hightlighted (default: `jsx`) |
+|code          | `string`                 | Some React code                              |
+|externals     | `Array<String, Object>`  | Add an external component or library.        |
 
 - **LiveEditor**
 
 | Prop     | Type          | Description                                  |
 |----------|---------------|----------------------------------------------|
-|language     | `string`   | Language to be hightlighted (default: `jsx`) |
+|onChange  | `method`      | returns transpiled code by Babel             |
 
 - **LivePreview**
 
@@ -79,7 +82,7 @@ const Hello = () => <h1>Hello world</h1>
 |onError     | `method`     | returns a code error             |
 
 ## Notes
-- [Full example check src/App.js](src/App.js).
+- [Full example check src/examples](src/examples).
 - All pull requests are welcome.
 
 # License
