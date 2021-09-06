@@ -4,7 +4,7 @@ body {
   background-color: #1b1b1b;
   color: #fff;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Open Sans', sans-serif,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,10 +19,12 @@ main {
   padding: 20px;
 }
 
-h1,h3 {
+main>h3 {
   text-align: center;
   text-transform: uppercase;
 }
+
+main>h1 { color: #ff3939; font-family: 'Lobster', cursive; text-align: center;}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -37,6 +39,8 @@ code {
   font-size: 12px !important;
   margin: auto;
   margin-bottom: 20px;
+  border-radius: 7px;
+  overflow: hidden;
 }
 
 .live-editor {
@@ -61,12 +65,13 @@ code {
 .live-editor button:hover {opacity: 0.8;}
 
 .live-error {
+  height: 100%;
   width: 50%;
   position: absolute;
   right: 0;
   bottom: 0;
   padding: 10px 20px;
-  background-color: #ff4444;
+  background-color: #ff3939;
   overflow: auto;
 }
 
@@ -74,7 +79,12 @@ code {
   width: 50%;
 }
 
-pre {margin: 0 !important;}
+pre , code{margin: 0 !important; border-radius: 0 !important;}
+
+footer {
+  padding: 20px;
+  text-align: center;
+}
 
 .live-preview {
   padding: 10px;

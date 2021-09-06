@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import LiveContext from './LiveContext';
 
-export default function LiveProvider ({ children, code, onError }) {
+export default function LiveProvider ({ children, code, externals }) {
+
+  const initExternals = [{
+    name: 'React',
+    lib: React
+  }];
+
   const initState = {
     editorVal: code,
     outputVal: '',
-    error: null
+    error: null,
+    externals: externals
+      ? [...initExternals, ...externals]
+      : initExternals
   };
 
   const [liveState, setLiveState] = useState(initState);

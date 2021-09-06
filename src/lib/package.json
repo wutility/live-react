@@ -30,7 +30,8 @@
     "react",
     "live",
     "prism",
-    "component"
+    "component",
+    "syntax highlighter"
   ],
   "devDependencies": {
     "@babel/core": "^7.15.5",

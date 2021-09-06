@@ -13,7 +13,9 @@ export default function LivePreview ({ onTranspile, onError }) {
   useEffect(() => {
     if (previewRef && previewRef.current) {
       try {
-        let result = window.Babel.transform(liveState.editorVal, babelOptions);
+
+        let { externals, editorVal } = liveState;
+        let result = window.Babel.transform(editorVal, babelOptions);
 
         const render = (Element) => {
           let ErroB = ErrorBoundary(Element, (e) => {
@@ -26,8 +28,17 @@ export default function LivePreview ({ onTranspile, onError }) {
           );
         }
 
-        let Func = new Function('React', 'render', result.code);
-        Func(React, render);
+        let externalsNames = ['render']
+        let externalComponents = [render]
+
+        if (externals) {
+          externalsNames = [...externalsNames, ...Object.keys(externals).map(v => externals[v].name)]
+          externalComponents = [...externalComponents, ...Object.keys(externals).map(v => externals[v].lib)]
+        }
+
+        let Func = new Function(...externalsNames, result.code);
+        Func(...externalComponents);
+
         setLiveState({ ...liveState, error: '' });
 
         if (onTranspile) {
