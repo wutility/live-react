@@ -1,11 +1,11 @@
-import LiveProvider from './store/LiveProvider';
-import LiveEditor from './live/LiveEditor';
-import LivePreview from './live/LivePreview';
-import LiveError from './live/LiveError';
+import LiveProvider from "./store/LiveProvider";
+import LiveEditor from "./live/LiveEditor";
+import LiveError from "./live/LiveError";
+import LivePreview from "./live/LivePreview";
 
 export {
   LiveProvider,
   LiveEditor,
-  LivePreview,
-  LiveError
+  LiveError,
+  LivePreview
 }

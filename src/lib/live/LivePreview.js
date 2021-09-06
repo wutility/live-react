@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import LiveContext from '../store/LiveContext';
 import ErrorBoundary from './ErrorBoundary';
-import styled from 'styled-components';
 
 let babelOptions = { envName: 'production', presets: ['react', 'es2015'], babelrc: false };
 
@@ -27,8 +26,8 @@ export default function LivePreview ({ onTranspile, onError }) {
           );
         }
 
-        let Func = new Function('React', 'render', 'styled', result.code);
-        Func(React, render, styled);
+        let Func = new Function('React', 'render', result.code);
+        Func(React, render);
         setLiveState({ ...liveState, error: '' });
 
         if (onTranspile) {

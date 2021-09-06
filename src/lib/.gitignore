@@ -1,14 +1,8 @@
 node_modules/
 public/
 tests/
-
-live/
-store/
-index.js
-
-rollup.config.js
+dist/
 
 .vscode
 .cache
-.gitignore
 yarn.lock

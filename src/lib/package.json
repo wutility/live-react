@@ -2,18 +2,20 @@
   "name": "live-react",
   "version": "1.0.0",
   "description": "React live component",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "license": "MIT",
   "peerDependencies": {
     "prismjs": "^1.24.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
+  "scripts": {
+    "watch": "rollup -w -c",
+    "build": "rollup -c"
+  },
   "files": [
-    "index.js",
-    "LiveContext.js",
-    "LiveProvider.js",
-    "live"
+    "dist/*"
   ],
   "author": "Haikel Fazzani",
   "repository": {
@@ -29,5 +31,18 @@
     "live",
     "prism",
     "component"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "postcss": "^8.3.6",
+    "rollup": "^2.56.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-terser": "^7.0.2"
+  }
 }
