@@ -12,6 +12,11 @@ $ npm install live-reacto
 $ yarn add live-reacto
 ```
 
+# Required Babel
+```html
+<script src="https://unpkg.com/@babel/standalone@7.12.9/babel.min.js"></script>
+```
+
 # Usage
 ```jsx
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'live-reacto'

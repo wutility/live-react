@@ -1,6 +1,6 @@
 {
   "name": "live-reacto",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React live component",
   "main": "dist/index.js",
   "module": "dist/index.es.js",

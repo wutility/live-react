@@ -6,9 +6,7 @@ let codeTestFn = `() => {
     onClick={()=> alert('hello') }>click
   </button>
 
-  return <h3>
-    <Button />    
-  </h3>
+  return <div><Button /></div>
 }`
 
 export default function Functional () {
@@ -16,9 +14,9 @@ export default function Functional () {
   const [showLiveErrorFN, setShowLiveErrorFN] = useState(false);
 
   return (<>
-    <h3>functional</h3>
+    <h3># functional</h3>
     <LiveProvider code={codeTestFn}>
-      <div className="d-flex editor">
+      <div className="editor">
         <LiveEditor />
         <LivePreview onError={setShowLiveErrorFN} />
         {showLiveErrorFN && <LiveError />}

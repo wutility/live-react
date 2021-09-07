@@ -5,18 +5,22 @@ import ExternalLibrary from './examples/ExternalLibrary.js';
 
 export default function App () {
   return (<>
-    <main>
+
+    <header>
       <h1>Live Reacto</h1>
       <p className="mt-0 txt-center">A Simple and flexible playground for live editing React code</p>
+      <a className="btn" href="https://github.com/wutility/live-react#readme">Getting started</a>
+    </header>
 
-      <PureJsx />
-      <Functional />
-      <ExternalLibrary />
-      <WithError />
+    <main className="grid-2">
+      <div><PureJsx /></div>
+      <div><Functional /></div>
+      <div><ExternalLibrary /></div>
+      <div><WithError /></div>
     </main>
 
     <footer>
-      <a href="https://github.com/wutility/live-react">Repository</a>
+      <a href="https://github.com/wutility/live-react">Created with love ❤️ by Haikel Fazzani</a>
     </footer>
   </>);
 }

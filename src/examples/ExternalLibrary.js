@@ -23,13 +23,13 @@ export default function ExternalLibrary () {
   const [showLiveError, setShowLiveError] = useState(false);
 
   return (<>
-    <h3>external library</h3>
+    <h3># external library</h3>
     <LiveProvider
       code={codeTest}
       externals={[
         { name: 'styled', lib: styled } // this an external library (styled)
       ]}>
-      <div className="d-flex editor">
+      <div className="editor">
         <LiveEditor />
         <LivePreview
           onTranspile={() => { }}

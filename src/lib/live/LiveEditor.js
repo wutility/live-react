@@ -5,7 +5,7 @@ import Editor from "react-simple-code-editor";
 
 import Prism from 'prismjs';
 import "prismjs/components/prism-jsx";
-import "prismjs/themes/prism-tomorrow.css";
+import "prismjs/themes/prism-coy.css";
 
 export default function LiveEditor ({ onChange }) {
 

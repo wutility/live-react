@@ -16,9 +16,9 @@ export default function WithError () {
   const [showLiveErrorWithError, setShowLiveErrorWithError] = useState(false);
 
   return (<>
-    <h3>code with error</h3>
+    <h3># code with error</h3>
     <LiveProvider code={codeTestWithError}>
-      <div className="d-flex editor">
+      <div className="editor">
         <LiveEditor />
         <LivePreview
           onTranspile={() => { }}

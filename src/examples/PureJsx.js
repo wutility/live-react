@@ -8,9 +8,9 @@ export default function PureJsx () {
   const [showLiveErrorPureJsx, setShowLiveErrorPureJsx] = useState(false);
 
   return (<>
-    <h3>Pure Jsx</h3>
+    <h3># Pure Jsx</h3>
     <LiveProvider code={codeTestPureJsx}>
-      <div className="d-flex editor">
+      <div className="editor">
         <LiveEditor />
         <LivePreview onError={setShowLiveErrorPureJsx} />
         {showLiveErrorPureJsx && <LiveError />}
