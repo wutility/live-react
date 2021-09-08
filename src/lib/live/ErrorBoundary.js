@@ -16,7 +16,7 @@ export default function ErrorBoundary (Element, callback) {
 
     render () {
       try {
-        return typeof Element === 'function' ? <Element /> : Element;
+        return !this.state.hasError && typeof Element === 'function' ? <Element /> : Element;
       } catch (err) {
         return <>{'' + err.message}</>;
       }
