@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { LiveProvider, LiveEditor, LivePreview, LiveError } from '../lib/index.js'
+import { LiveProvider, LiveEditor, LivePreview } from '../lib/index.js'
 
 let codeTestWithError = `() => {
   const [count, setCount] = React.useState(0);
@@ -12,18 +11,12 @@ let codeTestWithError = `() => {
 }`;
 
 export default function WithError () {
-
-  const [showLiveErrorWithError, setShowLiveErrorWithError] = useState(false);
-
   return (<>
     <h3># code with error</h3>
     <LiveProvider code={codeTestWithError}>
       <div className="editor">
         <LiveEditor />
-        <LivePreview
-          onTranspile={() => { }}
-          onError={setShowLiveErrorWithError} />
-        {showLiveErrorWithError && <LiveError />}
+        <LivePreview onTranspile={() => { }} />
       </div>
     </LiveProvider>
   </>)

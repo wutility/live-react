@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { LiveProvider, LiveEditor, LivePreview, LiveError } from '../lib/index.js'
+import { LiveProvider, LiveEditor, LivePreview } from '../lib/index.js'
 import styled from 'styled-components'
 
 let codeTest = `function App() {
@@ -20,22 +19,14 @@ render(<App />)`;
 
 export default function ExternalLibrary () {
 
-  const [showLiveError, setShowLiveError] = useState(false);
-
   return (<>
     <h3># external library</h3>
     <LiveProvider
       code={codeTest}
-      externals={[
-        { name: 'styled', lib: styled } // this an external library (styled)
-      ]}>
+      bindings={{ styled }}>
       <div className="editor">
         <LiveEditor />
-        <LivePreview
-          onTranspile={() => { }}
-          onError={setShowLiveError}
-        />
-        {showLiveError && <LiveError />}
+        <LivePreview onTranspile={() => { }} />
       </div>
     </LiveProvider>
   </>);

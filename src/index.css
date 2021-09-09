@@ -68,8 +68,10 @@ code {
 }
 
 .editor>* {
+  width: 100%;
   border: 1px solid #ddd;
   background-color: #fff;
+  overflow: auto;
 }
 
 .live-editor {
