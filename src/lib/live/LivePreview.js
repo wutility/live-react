@@ -1,5 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import LiveContext from '../store/LiveContext';
+import LiveErrorBoundary from './LiveErrorBoundary';
 import { ErrorBoundary } from 'react-error-boundary'
 
 let babelOptions = {
@@ -9,33 +11,54 @@ let babelOptions = {
   comments: false
 };
 
-const LiveError = ({ msg }) => <pre className="live-error">{msg}</pre>
-
-function Preview ({ code, bindings }) {
-  try {
-    let transformed = window.Babel.transform(code, babelOptions).code
-    let Element = Function(
-      'React,' + Object.keys(bindings),
-      'return ' + transformed
-    ).call(null, React, ...Object.values(bindings))
-
-    return typeof Element == 'function' ? <Element /> : Element
-  } catch (error) {
-    return <LiveError msg={error.message} />
-  }
-}
-
 export default function LivePreview () {
-  const { liveState } = useContext(LiveContext)
-  let { bindings, code } = liveState;
 
-  const FallbackComponent = ({ error }) => {
-    return <LiveError msg={error.message} />
+  const prevRef = useRef()
+  const { liveState, setLiveState } = useContext(LiveContext)
+
+  const onError = ({ error }) => {
+    setLiveState({ ...liveState, error: error.message })
   }
 
-  return <div className="live-preview">
-    <ErrorBoundary FallbackComponent={FallbackComponent} resetKeys={[code]}>
-      <Preview code={code} bindings={bindings} />
-    </ErrorBoundary>
-  </div>
+  useEffect(() => {
+    try {
+      if (!prevRef || !prevRef.current) return;
+
+      const { bindings, code } = liveState;
+      const transformed = window.Babel.transform(code, babelOptions).code;
+
+      const render = (El) => {
+        const ErrorB = LiveErrorBoundary(El, e => {
+          setLiveState({ ...liveState, error: e })
+        });
+
+        ReactDOM.render(<ErrorB />, prevRef.current);
+      }
+
+      bindings['render'] = render;
+
+      let hasMethodRender = /render\(<\w+\s+\/>\)/g.test(code)
+
+      /* eslint-disable */
+      let Element = Function(
+        'React,' + Object.keys(bindings),
+        hasMethodRender ? transformed : 'return ' + transformed
+      )
+        .call(null, React, ...Object.values(bindings))
+      /* eslint-enable */
+
+      if (!hasMethodRender) {
+        render(Element)
+      }
+
+      setLiveState({ ...liveState, error: null })
+    } catch (error) {
+      setLiveState({ ...liveState, error: error })
+    }
+  }, [liveState.code]);
+
+  return <ErrorBoundary onError={onError} resetKeys={[liveState.code]}>
+    <div className="live-preview" ref={prevRef}></div>
+    {liveState.error && <pre className="live-error">{liveState.error.message}</pre>}
+  </ErrorBoundary>
 }

@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import LiveContext from './LiveContext';
 
 export default function LiveProvider ({ children, code, bindings }) {
-  
+
   const initState = {
     language: 'jsx',
-    code,
-    outputVal: '',
+    code: code || '',
     error: null,
     bindings: bindings || {}
   };
