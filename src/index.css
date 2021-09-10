@@ -103,17 +103,19 @@ textarea {
   opacity: 0.8;
 }
 
-.live-error {
+.live-error {  
   padding: 10px 20px;
   background-color: #d32c2c;
   color: #fff;
+  white-space: pre;
   overflow: auto;
+    overflow-wrap: break-word;
 }
 
 pre,
 code {
   margin: 0 !important;
-  border-radius: 0 !important;
+  border-radius: 0 !important;  
 }
 
 .btn,button {
@@ -156,6 +158,8 @@ footer a { color: #1b1b1b; text-decoration: none; text-transform: uppercase;}
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
+
+.grid-2>* {overflow: auto;}
 
 .txt-center {
   text-align: center;

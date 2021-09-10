@@ -9,6 +9,8 @@ let babelOptions = {
   comments: false
 };
 
+const LiveError = ({ msg }) => <pre className="live-error">{msg}</pre>
+
 function Preview ({ code, bindings }) {
   try {
     let transformed = window.Babel.transform(code, babelOptions).code
@@ -19,23 +21,21 @@ function Preview ({ code, bindings }) {
 
     return typeof Element == 'function' ? <Element /> : Element
   } catch (error) {
-    return <pre className="live-error">{error.message}</pre>
+    return <LiveError msg={error.message} />
   }
 }
 
 export default function LivePreview () {
-  const { liveState, setLiveState } = useContext(LiveContext)
+  const { liveState } = useContext(LiveContext)
   let { bindings, code } = liveState;
 
-  const onError = (error) => {
-    setLiveState({ ...liveState, error: error.message })
+  const FallbackComponent = ({ error }) => {
+    return <LiveError msg={error.message} />
   }
 
   return <div className="live-preview">
-    <ErrorBoundary FallbackComponent={<div>...</div>} onError={onError} resetKeys={[code]}>
-      {liveState.error
-        ? <pre className="live-error">{liveState.error}</pre>
-        : <Preview code={code} bindings={bindings} />}
+    <ErrorBoundary FallbackComponent={FallbackComponent} resetKeys={[code]}>
+      <Preview code={code} bindings={bindings} />
     </ErrorBoundary>
   </div>
 }
