@@ -78,7 +78,7 @@ const Hello = () => <h1>Hello world</h1>
 
 | Prop       | Type         | Description                                |
 |------------|--------------|--------------------------------------------|
-|onTransform | `method`     | returns the code to be transpiled by Babel |
+|onTransform | `method`     | returns the code transpiled by Babel |
 
 ## Notes
 - [Full examples check src/examples](src/examples).
