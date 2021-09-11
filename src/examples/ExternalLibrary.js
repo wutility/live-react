@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 let codeTest = `function App() {
 
-  // this an external library (styled)
+  // this is an external library (styled component)
   const Button = styled.button\`
     background-color: #000;
     color: #fff;

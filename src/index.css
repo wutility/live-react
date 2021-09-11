@@ -15,7 +15,8 @@ body {
 
 header,
 main,
-footer {
+footer ,
+section{
   padding: 20px 160px;
 }
 
@@ -184,7 +185,7 @@ footer a { color: #1b1b1b; text-decoration: none; text-transform: uppercase;}
 }
 
 @media screen and (max-width: 600px) {
-  main {
+  main,section {
     padding: 20px;
   }
 }

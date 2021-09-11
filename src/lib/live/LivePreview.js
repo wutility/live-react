@@ -11,7 +11,7 @@ let babelOptions = {
   comments: false
 };
 
-export default function LivePreview () {
+export default function LivePreview ({ onTransform }) {
 
   const prevRef = useRef()
   const { liveState, setLiveState } = useContext(LiveContext)
@@ -22,9 +22,10 @@ export default function LivePreview () {
 
   useEffect(() => {
     try {
-      if (!prevRef || !prevRef.current) return;
+      const { onlyHighlight, bindings, code } = liveState;
 
-      const { bindings, code } = liveState;
+      if (onlyHighlight || !prevRef || !prevRef.current) return;
+
       const transformed = window.Babel.transform(code, babelOptions).code;
 
       const render = (El) => {
@@ -47,18 +48,23 @@ export default function LivePreview () {
         .call(null, React, ...Object.values(bindings))
       /* eslint-enable */
 
-      if (!hasMethodRender) {
-        render(Element)
-      }
+      if (!hasMethodRender) { render(Element) }
 
       setLiveState({ ...liveState, error: null })
+
+      if (onTransform) onTransform(transformed)
     } catch (error) {
       setLiveState({ ...liveState, error: error })
     }
   }, [liveState.code]);
 
-  return <ErrorBoundary onError={onError} resetKeys={[liveState.code]}>
-    <div className="live-preview" ref={prevRef}></div>
-    {liveState.error && <pre className="live-error">{liveState.error.message}</pre>}
-  </ErrorBoundary>
+  if (liveState.onlyHighlight) {
+    return <></>
+  }
+  else {
+    return <ErrorBoundary onError={onError} resetKeys={[liveState.code]}>
+      <div className="live-preview" ref={prevRef}></div>
+      {liveState.error && <pre className="live-error">{liveState.error.message}</pre>}
+    </ErrorBoundary>
+  }
 }

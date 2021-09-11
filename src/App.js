@@ -1,6 +1,6 @@
 import Functional from './examples/Functional.js';
 import PureJsx from './examples/PureJsx.js';
-import WithError from './examples/WithError.js';
+import OnlyHighlight from './examples/OnlyHighlight.js';
 import ExternalLibrary from './examples/ExternalLibrary.js';
 
 export default function App () {
@@ -16,7 +16,7 @@ export default function App () {
       <div><PureJsx /></div>
       <div><Functional /></div>
       <div><ExternalLibrary /></div>
-      <div><WithError /></div>
+      <div><OnlyHighlight /></div>
     </main>
 
     <footer>

@@ -46,14 +46,13 @@ const Hello = () => <h1>Hello world</h1>
 <LiveProvider
   language="jsx" 
   code={code}
-  bindings={{ Hello }}> //-> bind component
+  readOnly={false}
+  onlyHighlight={false}
+  bindings={{ Hello }} //-> bind component
+>
 
-    <LiveEditor onChange={(newCode) => {}} />
-
-    <LivePreview
-      onError={error => { }}                // returns a code error
-    />
-
+  <LiveEditor onChange={setCode} />
+  <LivePreview onError={setError} />
 </LiveProvider>
 ```
 
@@ -61,11 +60,13 @@ const Hello = () => <h1>Hello world</h1>
 
 - **LiveProvider**
 
-| Prop         | Type                     | Description                                  |
-|--------------|--------------------------|----------------------------------------------|
-|language      | `string`                 | Language to be hightlighted (default: `jsx`) |
-|code          | `string`                 | Some React code                              |
-|bindings      | `Object`                 | Add an external component or library.        |
+| Prop         | Type                     | Description                                   |
+|--------------|--------------------------|-----------------------------------------------|
+|language      | `string`                 | Language to be hightlighted (default: `jsx`)  |
+|code          | `string`                 | Some React code                               |
+|bindings      | `Object`                 | Add an external component or library.         |
+|onlyHighlight | `Boolean`                | Disable LivePreview: works as Syntax highlighter.|
+|readOnly      | `Boolean`                | Disable editing on the LiveEditor (Default: false).|
 
 - **LiveEditor**
 
@@ -75,12 +76,12 @@ const Hello = () => <h1>Hello world</h1>
 
 - **LivePreview**
 
-| Prop       | Type         | Description                      |
-|------------|--------------|----------------------------------|
-|onError     | `method`     | returns a code error             |
+| Prop       | Type         | Description                                |
+|------------|--------------|--------------------------------------------|
+|onTransform | `method`     | returns the code to be transpiled by Babel |
 
 ## Notes
-- [Full example check src/examples](src/examples).
+- [Full examples check src/examples](src/examples).
 - All pull requests are welcome.
 
 # License

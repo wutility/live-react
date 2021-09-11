@@ -18,9 +18,11 @@ export default function LiveEditor ({ onChange }) {
 
   return <div className="live-editor">
     <Editor
+      readOnly={liveState.readOnly}
       value={liveState.code}
       onValueChange={(code) => onValChange(code)}
-      highlight={(code) => Prism.highlight(code, Prism.languages[liveState.language], liveState.language)}
+      highlight={(code) => Prism.highlight(code, Prism.languages[liveState.language],
+        liveState.language)}
     />
   </div>
 }

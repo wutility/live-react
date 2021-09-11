@@ -1,10 +1,12 @@
 {
   "name": "live-reacto",
-  "version": "1.0.7",
-  "description": "React live component",
+  "version": "1.0.8",
+  "description": "A Simple and flexible playground for live editing React code.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "license": "MIT",
+  "files": [
+    "dist/*"
+  ],
   "peerDependencies": {
     "react-simple-code-editor": "^0.11.0",
     "prismjs": "^1.24.1",
@@ -15,10 +17,7 @@
   "scripts": {
     "watch": "rollup -w -c",
     "build": "rollup -c"
-  },
-  "files": [
-    "dist/*"
-  ],
+  },  
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.4",
@@ -33,6 +32,7 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "author": "Haikel Fazzani",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wutility/live-react.git"
@@ -45,7 +45,7 @@
     "react",
     "live",
     "prism",
-    "component",
-    "syntax highlighter"
+    "syntax highlighter",
+    "component"
   ]
 }

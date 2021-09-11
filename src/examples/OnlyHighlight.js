@@ -1,4 +1,4 @@
-import { LiveProvider, LiveEditor, LivePreview } from '../lib/index.js'
+import { LiveProvider, LiveEditor } from '../lib/index.js'
 
 let codeTestWithError = `() => {
   const [count, setCount] = React.useState(0);
@@ -10,13 +10,12 @@ let codeTestWithError = `() => {
   );
 }`;
 
-export default function WithError () {
+export default function OnlyHighlight () {
   return (<>
-    <h3># code with error</h3>
-    <LiveProvider code={codeTestWithError}>
+    <h3># syntax Highlighter with readOnly</h3>
+    <LiveProvider code={codeTestWithError} onlyHighlight={true} readOnly={true}>
       <div className="editor">
         <LiveEditor />
-        <LivePreview onTranspile={() => { }} />
       </div>
     </LiveProvider>
   </>)

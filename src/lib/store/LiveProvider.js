@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import LiveContext from './LiveContext';
 
-export default function LiveProvider ({ children, code, bindings }) {
+export default function LiveProvider ({ children, code, bindings, onlyHighlight, readOnly }) {
 
   const initState = {
     language: 'jsx',
     code: code || '',
     error: null,
-    bindings: bindings || {}
+    bindings: bindings || {},
+    onlyHighlight: onlyHighlight || false,
+    readOnly: readOnly || false
   };
 
   const [liveState, setLiveState] = useState(initState);

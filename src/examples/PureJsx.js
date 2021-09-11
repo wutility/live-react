@@ -9,7 +9,9 @@ export default function PureJsx () {
     <LiveProvider code={codeTestPureJsx}>
       <div className="editor">
         <LiveEditor />
-        <LivePreview />
+        <LivePreview
+          onTransform={(transformed) => console.log(transformed)}
+        />
       </div>
     </LiveProvider>
   </>);
