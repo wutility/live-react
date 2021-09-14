@@ -21,13 +21,8 @@ section{
 }
 
 header {
-  min-height: 280px;
   background-color: #1b1b1b;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
   text-align: center;
@@ -113,12 +108,6 @@ textarea {
     overflow-wrap: break-word;
 }
 
-pre,
-code {
-  margin: 0 !important;
-  border-radius: 0 !important;  
-}
-
 .btn,button {
   border-radius: 4px;
     font-size: 14px;
@@ -150,8 +139,18 @@ footer a { color: #1b1b1b; text-decoration: none; text-transform: uppercase;}
   padding: 10px;
 }
 
+
 .d-flex {
   display: flex;
+}
+
+.align-center {align-items: center;}
+.justify-center {justify-content: center;}
+
+.grid-3 {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
 }
 
 .grid-2 {
@@ -169,6 +168,11 @@ footer a { color: #1b1b1b; text-decoration: none; text-transform: uppercase;}
 .mt-0 {
   margin-top: 0;
 }
+.mr-1 {margin-right: 10px;}
+.ml-1 {margin-left: 10px;}
+.mb-1 {margin-bottom: 10px;}
+
+.mb-2 {margin-bottom: 20px;}
 
 ::-webkit-scrollbar {
   width: 5px;
