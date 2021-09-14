@@ -3,7 +3,8 @@ A Simple and flexible playground for live editing React code
 
 ![React live component](https://badgen.net/bundlephobia/dependency-count/live-reacto) ![React live component](https://badgen.net/npm/v/live-reacto) ![React live component](https://badgen.net/npm/dt/live-reacto) 
 
-### [Demo](https://live-react-component.netlify.app)
+### [PLayground](https://live-react-component.netlify.app)
+### [Demo Codesandbox](https://codesandbox.io/s/live-react-qhthu)
 
 # Installation
 ```bash
@@ -19,20 +20,12 @@ $ yarn add live-reacto
 
 # Usage
 ```jsx
-import { LiveProvider, LiveEditor, LivePreview } from 'live-reacto'
+import { LiveProvider, LiveEditor, LivePreview } from 'live-reacto';
 
-<LiveProvider code={'your code'}>
-  <LiveEditor onChange={(newCode) => {}} />
-  <LivePreview />
-</LiveProvider>
-```
+// import your favorite prismjs theme
+import "prismjs/themes/prism-dark.css";
 
-## Full Example
-```jsx
-// to change Prism theme, just import css file
-import "prismjs/themes/prism-tomorrow.css";
-
-const code = `function App() {
+const codeTest = `function App() {
   const [count, setCount] = React.useState(0);
   const onCount = () => setCount(count + 1);
   return <div>{count} <button onClick={onCount}>Click me</button></div>
@@ -45,14 +38,14 @@ const Hello = () => <h1>Hello world</h1>
 
 <LiveProvider
   language="jsx" 
-  code={code}
+  code={codeTest}
   readOnly={false}
   onlyHighlight={false}
   bindings={{ Hello }} //-> bind component
 >
 
   <LiveEditor onChange={setCode} />
-  <LivePreview onError={setError} />
+  <LivePreview onTransform={setTransform} />
 </LiveProvider>
 ```
 
@@ -72,7 +65,8 @@ const Hello = () => <h1>Hello world</h1>
 
 | Prop     | Type          | Description                                  |
 |----------|---------------|----------------------------------------------|
-|onChange  | `method`      | returns live coding            |
+|onChange  | `method`      | returns live coding                          |
+|style     | `Object`         | set css style for editor                  |
 
 - **LivePreview**
 

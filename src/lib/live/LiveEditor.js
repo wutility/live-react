@@ -1,13 +1,10 @@
 import React, { useContext } from 'react';
 import LiveContext from '../store/LiveContext';
-
 import Editor from "react-simple-code-editor";
-
 import Prism from 'prismjs';
 import "prismjs/components/prism-jsx";
-import "prismjs/themes/prism-coy.css";
 
-export default function LiveEditor ({ onChange }) {
+export default function LiveEditor ({ onChange , style = {}}) {
 
   const { liveState, setLiveState } = useContext(LiveContext)
 
@@ -21,8 +18,13 @@ export default function LiveEditor ({ onChange }) {
       readOnly={liveState.readOnly}
       value={liveState.code}
       onValueChange={(code) => onValChange(code)}
-      highlight={(code) => Prism.highlight(code, Prism.languages[liveState.language],
-        liveState.language)}
+      padding={10}
+      style={style}
+      highlight={(code) => Prism.highlight(
+        code,
+        Prism.languages[liveState.language],
+        liveState.language
+      )}
     />
   </div>
 }

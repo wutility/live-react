@@ -11,4 +11,7 @@ rollup.config.js
 .vscode
 .cache
 .gitignore
+
 yarn.lock
+
+README.md
