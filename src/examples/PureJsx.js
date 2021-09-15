@@ -1,6 +1,6 @@
 import { LiveProvider, LiveEditor, LivePreview } from '../lib/index.js'
 
-let codeTestPureJsx = `<button onClick={()=> alert('hello') }>click</button>`
+let codeTestPureJsx = `<button onClick={() => alert('hello') }>click</button>`
 
 export default function PureJsx () {
 
@@ -9,9 +9,7 @@ export default function PureJsx () {
     <LiveProvider code={codeTestPureJsx}>
       <div className="editor">
         <LiveEditor />
-        <LivePreview
-          onTransform={(transformed) => console.log(transformed)}
-        />
+        <LivePreview onTransform={(transformed) => console.log(transformed)} />
       </div>
     </LiveProvider>
   </>);

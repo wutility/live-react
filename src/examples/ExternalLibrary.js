@@ -21,12 +21,10 @@ export default function ExternalLibrary () {
 
   return (<>
     <h3># external library</h3>
-    <LiveProvider
-      code={codeTest}
-      bindings={{ styled }}>
+    <LiveProvider code={codeTest} bindings={{ styled }}>
       <div className="editor">
         <LiveEditor />
-        <LivePreview onTranspile={() => { }} />
+        <LivePreview />
       </div>
     </LiveProvider>
   </>);

@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function LiveErrorBoundary (Element, callback) {
-
   return class ErrorB extends React.Component {
 
     state = { hasError: false, error: null };

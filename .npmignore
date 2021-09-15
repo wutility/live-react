@@ -1,17 +1,17 @@
 node_modules/
 public/
 tests/
-
-live/
-store/
-index.js
+build/
+src/
 
 rollup.config.js
 
 .vscode
 .cache
 .gitignore
+.env
 
 yarn.lock
+yarn-error.log
 
-README.md
+*.md

@@ -9,7 +9,7 @@ const path = require('path')
 const packageJson = require("./package.json");
 
 export default {
-  input: "index.js",
+  input: "src/lib/index.js",
   output: [
     {
       name: "liveReacto",
