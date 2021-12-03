@@ -13,11 +13,6 @@ $ npm install live-reacto
 $ yarn add live-reacto
 ```
 
-# Required Babel
-```html
-<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.15.6/babel.min.js"></script>
-```
-
 # Usage
 ```jsx
 import { LiveProvider, LiveEditor, LivePreview } from 'live-reacto';
@@ -73,6 +68,14 @@ const Hello = () => <h1>Hello world</h1>
 | Prop       | Type         | Description                                |
 |------------|--------------|--------------------------------------------|
 |onTransform | `method`     | returns the code transpiled by Babel |
+
+### "peerDependencies": {
+- prismjs
+- react
+- react-dom
+- react-error-boundary
+- react-simple-code-editor
+- @babel/standalone
 
 ## Notes
 - [Full examples check src/examples](src/examples).

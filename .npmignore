@@ -1,17 +1,19 @@
 node_modules/
-public/
-tests/
-build/
-src/
+
+stories
+src
+storybook-static
+node_modules
+
+.storybook
+.gitignore
+.cache
+*.zip
+*.rar
+*.tar
+.github
 
 rollup.config.js
-
-.vscode
-.cache
-.gitignore
-.env
+tsconfig.json
 
 yarn.lock
-yarn-error.log
-
-*.md

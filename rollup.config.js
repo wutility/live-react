@@ -1,43 +1,31 @@
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-//import postcss from "rollup-plugin-postcss";
-import babel from '@rollup/plugin-babel';
-import { terser } from "rollup-plugin-terser";
+import typescript from "rollup-plugin-typescript2";
+import postcss from "rollup-plugin-postcss";
 
-const path = require('path')
 const packageJson = require("./package.json");
 
+const pkg = require('./package.json')
+const banner = `/*! ${pkg.name} - v${pkg.version} | Copyright 2022 - ${pkg.author} */\n`;
+
 export default {
-  input: "src/lib/index.js",
+  input: "src/index.ts",
   output: [
-    {
-      name: "liveReacto",
-      file: packageJson.main,
-      format: "umd",
-      sourcemap: false
-    },
     {
       file: packageJson.module,
       format: "esm",
-      sourcemap: true
+      sourcemap: true,
+      banner
     }
   ],
   plugins: [
     peerDepsExternal(),
     resolve(),
-    babel({
-      presets: ['@babel/env', '@babel/preset-react'],
-      plugins: ['@babel/plugin-transform-runtime'],
-      babelHelpers: 'runtime',
-      exclude: 'node_modules/**'
-    }),
-    // postcss({
-    //   minimize: true,
-    //   extensions: ['.css'],
-    //   extract: path.resolve('dist/index.css')
-    // }),
     commonjs(),
-    terser()
+    typescript({ useTsconfigDeclarationDir: true }),
+    postcss({
+      extensions: ['.css']
+    })
   ]
 };

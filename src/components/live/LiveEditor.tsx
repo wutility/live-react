@@ -4,11 +4,11 @@ import Editor from "react-simple-code-editor";
 import Prism from 'prismjs';
 import "prismjs/components/prism-jsx";
 
-export default function LiveEditor ({ onChange , style = {}}) {
+export default function LiveEditor({ onChange, style = {} }: any) {
 
   const { liveState, setLiveState } = useContext(LiveContext)
 
-  const onValChange = code => {
+  const onValChange = (code: any) => {
     if (onChange) onChange(code)
     setLiveState({ ...liveState, code })
   }

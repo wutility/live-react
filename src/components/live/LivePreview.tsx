@@ -4,6 +4,8 @@ import LiveContext from '../store/LiveContext';
 import LiveErrorBoundary from './LiveErrorBoundary';
 import { ErrorBoundary } from 'react-error-boundary'
 
+import * as Babel from '@babel/standalone';
+
 let babelOptions = {
   envName: 'production',
   presets: ['react', 'es2017'],
@@ -11,12 +13,12 @@ let babelOptions = {
   comments: false
 };
 
-export default function LivePreview ({ onTransform }) {
+export default function LivePreview ({ onTransform }:any) {
 
   const prevRef = useRef()
   const { liveState, setLiveState } = useContext(LiveContext)
 
-  const onError = ({ error }) => {
+  const onError = ({ error }:any) => {
     setLiveState({ ...liveState, error: error.message })
   }
 
@@ -26,7 +28,7 @@ export default function LivePreview ({ onTransform }) {
 
       if (onlyHighlight || !prevRef || !prevRef.current) return;
 
-      const transformed = window.Babel.transform(code, babelOptions).code;
+      const transformed = Babel.transform(code, babelOptions).code;
 
       const render = (El) => {
         const ErrorB = LiveErrorBoundary(El, e => {
