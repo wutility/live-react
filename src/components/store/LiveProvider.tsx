@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import LiveContext from './LiveContext';
 
 export default function LiveProvider ({ children, code, bindings, onlyHighlight, readOnly }:any) {
-
   const initState = {
     language: 'jsx',
     code: code || '',

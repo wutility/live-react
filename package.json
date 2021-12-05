@@ -1,6 +1,6 @@
 {
   "name": "live-reacto",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "description": "A Simple and flexible playground for live editing React code.",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",

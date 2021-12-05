@@ -38,7 +38,6 @@ const Hello = () => <h1>Hello world</h1>
   onlyHighlight={false}
   bindings={{ Hello }} //-> bind component
 >
-
   <LiveEditor onChange={setCode} />
   <LivePreview onTransform={setTransform} />
 </LiveProvider>

@@ -5,10 +5,10 @@ import styled from 'styled-components'
 import './LiveReact.css';
 import "prismjs/themes/prism-coy.css";
 
-let codeTestPureJsx = `<button onClick={() => alert('hello') }>click</button>`;
 
 export default { title: 'LiveReact', component: LiveEditor } as ComponentMeta<typeof LiveEditor>;
 
+let codeTestPureJsx = `<button onClick={() => alert('hello') }>click</button>`;
 export const Single: ComponentStory<typeof LiveEditor> = () => {
   return (<>
     <h3># Pure Jsx</h3>
