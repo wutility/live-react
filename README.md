@@ -68,7 +68,7 @@ const Hello = () => <h1>Hello world</h1>
 |------------|--------------|--------------------------------------------|
 |onTransform | `method`     | returns the code transpiled by Babel |
 
-### "peerDependencies": {
+### Peer dependencies
 - prismjs
 - react
 - react-dom
