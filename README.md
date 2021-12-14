@@ -3,8 +3,7 @@ A Simple and flexible playground for live editing React code
 
 ![React live component](https://badgen.net/bundlephobia/dependency-count/live-reacto) ![React live component](https://badgen.net/npm/v/live-reacto) ![React live component](https://badgen.net/npm/dt/live-reacto) 
 
-### [PLayground](https://live-react-component.netlify.app)
-### [Demo Codesandbox](https://codesandbox.io/s/live-react-qhthu)
+### [Demo](https://wutility.github.io/live-react/)
 
 # Installation
 ```bash

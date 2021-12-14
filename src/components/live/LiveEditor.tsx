@@ -5,7 +5,6 @@ import Prism from 'prismjs';
 import "prismjs/components/prism-jsx";
 
 export default function LiveEditor({ onChange, style = {} }: any) {
-
   const { liveState, setLiveState } = useContext(LiveContext)
 
   const onValChange = (code: any) => {
