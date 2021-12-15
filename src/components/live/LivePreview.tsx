@@ -13,12 +13,22 @@ let babelOptions = {
   comments: false
 };
 
-export default function LivePreview ({ onTransform }:any) {
+function ErrorFallback({ error, resetErrorBoundary }: any) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  )
+}
 
-  const prevRef = useRef()
+export default function LivePreview({ onTransform }: any) {
+
+  const prevRef = useRef<any>()
   const { liveState, setLiveState } = useContext(LiveContext)
 
-  const onError = ({ error }:any) => {
+  const onError = ({ error }: any) => {
     setLiveState({ ...liveState, error: error.message })
   }
 
@@ -30,8 +40,8 @@ export default function LivePreview ({ onTransform }:any) {
 
       const transformed = Babel.transform(code, babelOptions).code;
 
-      const render = (El) => {
-        const ErrorB = LiveErrorBoundary(El, e => {
+      const render = (El: any) => {
+        const ErrorB = LiveErrorBoundary(El, (e: any) => {
           setLiveState({ ...liveState, error: e })
         });
 
@@ -64,7 +74,11 @@ export default function LivePreview ({ onTransform }:any) {
     return <></>
   }
   else {
-    return <ErrorBoundary onError={onError} resetKeys={[liveState.code]}>
+    return <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onError={onError}
+      resetKeys={[liveState.code]}
+    >
       <div className="live-preview" ref={prevRef}></div>
       {liveState.error && <pre className="live-error">{liveState.error.message}</pre>}
     </ErrorBoundary>
