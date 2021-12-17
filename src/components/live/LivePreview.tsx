@@ -5,6 +5,7 @@ import LiveErrorBoundary from './LiveErrorBoundary';
 import { ErrorBoundary } from 'react-error-boundary'
 
 import * as Babel from '@babel/standalone';
+import ErrorFallback from './ErrorFallback';
 
 let babelOptions = {
   envName: 'production',
@@ -12,16 +13,6 @@ let babelOptions = {
   babelrc: false,
   comments: false
 };
-
-function ErrorFallback({ error, resetErrorBoundary }: any) {
-  return (
-    <div role="alert">
-      <p>Something went wrong:</p>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
-    </div>
-  )
-}
 
 export default function LivePreview({ onTransform }: any) {
 
