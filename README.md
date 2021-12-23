@@ -76,7 +76,6 @@ const Hello = () => <h1>Hello world</h1>
 - @babel/standalone
 
 ## Notes
-- [Full examples check src/examples](src/examples).
 - All pull requests are welcome.
 
 # License
